@@ -1,0 +1,10 @@
+version: "3"
+services:
+
+  postgres:
+    image: postgres
+    container_name: eloquent_php_postgres
+    ports:
+      - 3307:5432/tcp
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
