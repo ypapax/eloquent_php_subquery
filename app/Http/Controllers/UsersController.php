@@ -28,4 +28,17 @@ class UsersController extends Controller
         return User::groupBy('name')->selectRaw('name, count(*) as total')
             ->get();
     }
+
+    public function sub()
+    {
+//        TO_CHAR(filings.updated_at, 'YYYY-MM-DD HH24:MI:SS.US') updated_at
+//        $sub = User::limit(1);
+//        $sub = User::selectRaw("name, updated_at")->limit(2);
+        $sub = User::selectRaw("name, TO_CHAR(updated_at, 'YYYY-MM-DD HH24:MI:SS.US') upd")->limit(1);
+//        $sub = User::selectRaw("name, TO_CHAR(updated_at, 'MM-DD HH24:MI:SS.US') updated_at")->limit(2);
+        /*return User::groupBy('name')->selectRaw('name, count(*) as total')
+            ->get();*/
+        return $sub->get();
+//        return "ku";
+    }
 }
