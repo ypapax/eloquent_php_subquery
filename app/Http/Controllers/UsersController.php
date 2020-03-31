@@ -39,7 +39,7 @@ class UsersController extends Controller
 
     public function raw()
     {
-        $q = DB::select("select * from users;");
+        $q = DB::select("select name, TO_CHAR(updated_at, 'YYYY-MM-DD HH24:MI:SS.US') from (select * from users) u");
 
         return ["result" => $q];
     }
