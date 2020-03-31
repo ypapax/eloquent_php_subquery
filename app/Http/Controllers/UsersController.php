@@ -31,7 +31,9 @@ class UsersController extends Controller
 
     public function sub()
     {
-        $sub = User::limit(1);
-        return User::raw("({$sub->toSql()}) as sub")->mergeBindings($sub->getQuery())->selectRaw("name, TO_CHAR(updated_at, 'YYYY-MM-DD HH24:MI:SS.US') upd")->get();
+        $sub = User::selectRaw("name, updated_at")->limit(1);
+        $q = User::raw("({$sub->toSql()}) as sub")->mergeBindings($sub->getQuery())->selectRaw("name, TO_CHAR(updated_at, 'YYYY-MM-DD HH24:MI:SS.US') upd");
+
+        return ["sql"=> $q->toSql(), "result" => $q->get()];
     }
 }
