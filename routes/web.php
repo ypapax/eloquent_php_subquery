@@ -17,3 +17,4 @@ Route::get('/user', 'UsersController@list');
 Route::get('/addUser', 'UsersController@add');
 Route::get('/group', 'UsersController@group');
 Route::get('/sub', 'UsersController@sub');
+Route::get('/raw', 'UsersController@raw');

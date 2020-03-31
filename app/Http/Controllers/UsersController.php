@@ -36,4 +36,11 @@ class UsersController extends Controller
 
         return ["sql"=> $q->toSql(), "result" => $q->get()];
     }
+
+    public function raw()
+    {
+        $q = DB::select("select * from users;");
+
+        return ["result" => $q];
+    }
 }
