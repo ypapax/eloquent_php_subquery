@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use LineLogger\Log;
 
 class UsersController extends Controller
@@ -31,6 +32,6 @@ class UsersController extends Controller
     public function sub()
     {
         $sub = User::limit(1);
-        return User::raw("({$sub->toSql()}) as sub")->mergeBindings($sub->getQuery())->selectRaw("name, TO_CHAR(updated_at, 'YYYY-MM-DD HH24:MI:SS.US') upd");
+        return User::raw("({$sub->toSql()}) as sub")->mergeBindings($sub->getQuery())->selectRaw("name, TO_CHAR(updated_at, 'YYYY-MM-DD HH24:MI:SS.US') upd")->get();
     }
 }
